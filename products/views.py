@@ -72,3 +72,4 @@ def create_product_view(request):
                 rate=form.cleaned_data['rate'] if form.cleaned_data['rate'] is not None else 5,
             )
             return redirect('/products/')
+print()
