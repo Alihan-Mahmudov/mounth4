@@ -1,0 +1,49 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <style type="text/css">
+        .product {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-left: 10%;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        .comments {
+            margin-top: 20px;
+        }
+        .comments {
+            background: #242b2e;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .product > img {
+            width: 40%;
+        }
+    </style>
+    <div class="product">
+        <img src="/media/{{ product.image }}/" alt="">
+        <h1>{{ product.author.username }}</h1>
+        <h1>{{ product.title }}</h1>
+        <h4>{{ product.description }}</h4>
+        <h3>Rate: {{ product.rate }}</h3>
+        <h3>Date of creation: {{ product.created_date }}</h3>
+    </div>
+    <div class="create_comment">
+        <form action="/products/{{ product.id }}/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add Review">
+        </form>
+    </div>
+        <div class="comments">
+            {% for i in comments %}
+                <div class="comments">
+                    <h5>{{ i.author.username }}</h5>
+                    <h6>{{ i.text }}</h6>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}
