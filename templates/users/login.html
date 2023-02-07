@@ -1,6 +1,6 @@
 {% extends 'layouts/index.html' %}
     {% block content %}
-        <form action="/users/auth/" method="post">
+        <form action="/users/login/" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Login">
